@@ -1,3 +1,5 @@
+Start : 17:53
+
 # Betclic Coding Assignment 2020
 
 The goal of this assignment is to showcase your ability to develop features and your coding style.
