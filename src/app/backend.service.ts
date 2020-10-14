@@ -60,7 +60,7 @@ export class BackendService {
             assigneeId: null,
             description: payload.description
         };
-
+        console.log(payload);
         return of(newTicket).pipe(
             delay(randomDelay()),
             tap((ticket: Ticket) => this.storedTickets.push(ticket))
@@ -90,7 +90,7 @@ export class BackendService {
             return of(foundTicket).pipe(
                 delay(randomDelay()),
                 tap((ticket: Ticket) => {
-                    ticket.completed = true;
+                    ticket.completed = completed;
                 })
             );
         }

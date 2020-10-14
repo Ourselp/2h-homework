@@ -5,6 +5,8 @@ import { Ticket } from '../interfaces/ticket.interface';
 import { User } from '../interfaces/user.interface';
 import { BackendService } from './backend.service';
 
+// Font awesome icon
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

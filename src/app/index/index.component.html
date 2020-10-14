@@ -1,0 +1,89 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3 px-1 position-fixed" id="sticky-sidebar">
+            <h1>Liste des tickets</h1>
+            <div class="nav flex-column flex-nowrap vh-100 overflow-auto p-2">
+                <div class="text-center">
+                    <app-loader [loading]=loading></app-loader>
+                </div>
+                <ng-container *ngIf="tickets.length > 0">
+                    <div class="text-center add-ticket" *ngIf="!loading">
+                        <fa-icon [icon]=faPlus class="pointer" data-toggle="modal" data-target="#modal-new-ticket"></fa-icon>
+                    </div>
+                    <div class="ticket-box" *ngFor="let ticket of tickets" [ngClass]="ticket.completed ? 'isCompleted' : 'isNotCompleted'" (click)="getTicket(ticket)">
+                        {{ '#' + ticket.id + ' - ' + ticket.description }}
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-9 offset-3 bg-black" id="main">
+            <div class="text-center">
+                <app-loader [loading]=loading></app-loader>
+            </div>
+            <ng-container *ngIf="ticketSelected">
+                <div class='ticket-detail-box'>
+                    <!-- <div class="user">{{ getUserNameForTicket(ticketSelected) }}</div> -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            ID du ticket : {{ ticketSelected.id }}
+                        </div>
+                        <div class="col-md-12">
+                            Assigné a : {{ ticketSelected.user ? ticketSelected.user : 'Loading...' }}
+                        </div>
+                        <div class="col-md-12">
+                            Description : {{ ticketSelected.description }}
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-update-ticket" 
+                            [ngClass]="ticketSelected.completed ? 'btn-danger' : 'btn-success'"
+                            (click)="updateStatusTicket(ticketSelected)"> <app-loader [loading]=loadingSaving></app-loader>  
+                                {{ ticketSelected.completed ? 'Réouvrir le ticket' : 'Cloturer le ticket' }}
+                        </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-new-ticket" tabindex="-1" role="dialog" aria-labelledby="modal-new-ticket-Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal-new-ticket-Label">Création d'un nouveau ticket</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" *ngIf="this.newTicket">
+          <table class="table">
+              <tbody>
+                  <tr>
+                    <th>
+                        Contact assigné à : 
+                    </th>
+                    <td>
+                        <select [(ngModel)]="this.newTicket.assigneeId">
+                            <option *ngFor="let user of this.users" [ngValue]="user.id">{{user.name}}</option>
+                        </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>
+                        Description :
+                    </th>
+                    <td>
+                        <textarea [(ngModel)]="this.newTicket.description" row="5"></textarea>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="addTicket()">Crée</button>
+        </div>
+      </div>
+    </div>
+  </div>

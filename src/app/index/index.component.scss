@@ -1,0 +1,57 @@
+#sticky-sidebar {
+    background-color: #333333;
+    color: white;
+    -webkit-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 2px 0px 5px 0px rgba(0,0,0,0.75);
+
+    .add-ticket {
+        margin-bottom: 15px;
+    }
+
+    .ticket-box {
+        background-color: #fff;
+        color: black;
+        border-radius: 5px;
+        padding: 3%;
+        margin-top: 10px;
+        
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+        }
+    }
+
+    .isCompleted {
+        border: 5px solid #00b700;
+    }
+
+    .isNotCompleted {
+        border: 5px solid red;
+    }
+}
+
+
+#main {
+    margin-top: 25px;
+
+    .ticket-detail-box {
+        background-color: white;
+        font-weight: 600;
+        padding: 5%;
+        -webkit-box-shadow: 0 10px 6px -6px #777;
+        -moz-box-shadow: 0 10px 6px -6px #777;
+             box-shadow: 0 10px 6px -6px #777;
+
+        .row > div:not(:first-of-type) {
+            margin-top: 15px;
+        }
+
+        .btn-update-ticket {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

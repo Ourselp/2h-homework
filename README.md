@@ -1,5 +1,9 @@
 Start : 17:53
 
+Fin : 20h10
+
+# Temps total : 2h17
+
 # Betclic Coding Assignment 2020
 
 The goal of this assignment is to showcase your ability to develop features and your coding style.
